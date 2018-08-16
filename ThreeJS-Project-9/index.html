@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Three.js Crash Course - Project 7</title>
+    
+    <style>
+      body {
+        margin: 0px;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    
+    
+    
+    <script src="js/three.min.js"></script>  
+    <script src="js/OrbitControls.js"></script>  
+    <!-- <script src="js/ObjectLoader.js"></script>   -->
+    <!-- <script src="js/JSONLoader.js"></script>   -->
+    <script src="js/GLTFLoader.js"></script>  
+    
+    <script>
+      
+      var scene = new THREE.Scene(),
+      // var scene = new THREE.Scene() - Object for setting up the scene. 
+          camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.001, 10000 ),
+          // camera = new THREE.PerspectiveCamera( [Field of View], [Aspect Ratio: Width / Height], [Clipping Plane: Near, Far] );
+          renderer =  new THREE.WebGLRenderer();
+      
+      // Set the intial size of the viewport  
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      
+      // Ad the renderer / canvas element to the body
+      document.body.appendChild( renderer.domElement );
+      
+      // Update the Canvas size when the browser is resized. Responsive yo.
+      window.addEventListener( 'resize', function() {
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+      });
+      
+      //ADDED: Holy shit that's easy, SO I imported OrbitControls from examples/js/controls/OrbitControls.js and implement it below. Just gotta give it the camera and the renderer element and it works.
+      controls = new THREE.OrbitControls( camera, renderer.domElement );
+      
+      var loader = new THREE.GLTFLoader();
+            
+      loader.load(
+        'models/Chair.gltf',
+        function ( gltf ) {
+      
+      		scene.add( gltf.scene );
+      
+      	},
+      	// called while loading is progressing
+      	function ( xhr ) {
+      
+      		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+      
+      	},
+      	// called when loading has errors
+      	function ( error ) {
+      
+      		console.log( 'An error happened' );
+      
+      	}
+      );
+      
+      // At this point the cube is there, but both the cube and the camera are at the origin point (0, 0, 0) so we just need to move either the cube or the camera.      
+      camera.position.z = 5;
+      
+      //Skybox
+      var geometry = new THREE.CubeGeometry( 1000, 1000, 1000 );
+      var cubeMaterials = [
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_ft.png' ),
+          side: THREE.DoubleSide
+        } ),
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_bk.png' ),
+          side: THREE.DoubleSide
+        } ),
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_up.png' ),
+          side: THREE.DoubleSide
+        } ),
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_dn.png' ),
+          side: THREE.DoubleSide
+        } ),
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_rt.png' ),
+          side: THREE.DoubleSide
+        } ),
+        new THREE.MeshBasicMaterial( {
+          map: new THREE.TextureLoader().load( 'img/siege_lf.png' ),
+          side: THREE.DoubleSide
+        } ),
+      ];
+
+      var cubeMaterial = new THREE.MeshFaceMaterial( cubeMaterials );
+      var cube = new THREE.Mesh( geometry, cubeMaterial );
+      scene.add( cube )
+          
+      var update = function() {
+        // Game logic goes here, basically tells the browser how things should change every frame.
+        
+        // Rotate the cube these amounts on these axis every frame.
+        // cube.rotation.x += 0.01;
+        // cube.rotation.y += 0.005;
+                
+
+        
+      };
+      
+      var render = function() {
+        // Draw Scene
+        renderer.render( scene, camera );    
+        
+      };
+      
+      var GameLoop = function() {
+        // Run Game Loop (update, render, repeat)
+        
+        requestAnimationFrame( GameLoop );
+        
+        update();
+        render();
+        
+      };
+      
+      GameLoop();
+      
+    </script>
+  </body>
+  
+</html>

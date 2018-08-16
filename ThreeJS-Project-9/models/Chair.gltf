@@ -1,0 +1,139 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 32976,
+            "max" : [
+                6192
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 6193,
+            "max" : [
+                1.0668978691101074,
+                1.38302481174469,
+                1.0261118412017822
+            ],
+            "min" : [
+                -0.9460852146148682,
+                -1.0915497541427612,
+                -1.0261118412017822
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 6193,
+            "max" : [
+                0.9983825087547302,
+                0.999969482421875,
+                0.9988707900047302
+            ],
+            "min" : [
+                -0.999664306640625,
+                -0.999969482421875,
+                -0.9988707900047302
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 6193,
+            "max" : [
+                1.1116100549697876,
+                0.9884441941976547
+            ],
+            "min" : [
+                -0.10967671871185303,
+                0.010569572448730469
+            ],
+            "type" : "VEC2"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 65952,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 74316,
+            "byteOffset" : 65952,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 74316,
+            "byteOffset" : 140268,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 49544,
+            "byteOffset" : 214584,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 264128,
+            "uri" : "Chair.bin"
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Plane.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1,
+                        "TEXCOORD_0" : 3
+                    },
+                    "indices" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Plane.001",
+            "rotation" : [
+                0.0,
+                0.0,
+                0.04860595613718033,
+                0.998818039894104
+            ],
+            "translation" : [
+                2.9802322387695312e-08,
+                -3.725290298461914e-09,
+                -0.0
+            ]
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}

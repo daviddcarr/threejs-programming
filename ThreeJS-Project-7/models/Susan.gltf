@@ -1,0 +1,129 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5123,
+            "count" : 47232,
+            "max" : [
+                7957
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 7958,
+            "max" : [
+                1.330683946609497,
+                0.94195556640625,
+                0.8228963613510132
+            ],
+            "min" : [
+                -1.330683946609497,
+                -0.97308349609375,
+                -0.7838897705078125
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 7958,
+            "max" : [
+                0.99993896484375,
+                0.99993896484375,
+                0.999969482421875
+            ],
+            "min" : [
+                -0.99993896484375,
+                -0.999481201171875,
+                -0.999969482421875
+            ],
+            "type" : "VEC3"
+        }
+    ],
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter",
+        "version" : "2.0"
+    },
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 94464,
+            "byteOffset" : 0,
+            "target" : 34963
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 95496,
+            "byteOffset" : 94464,
+            "target" : 34962
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 95496,
+            "byteOffset" : 189960,
+            "target" : 34962
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 285456,
+            "uri" : "Susan.bin"
+        }
+    ],
+    "extensionsRequired" : [
+        "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "extensionsUsed" : [
+        "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "materials" : [
+        {
+            "extensions" : {
+                "KHR_materials_pbrSpecularGlossiness" : {
+                    "diffuseFactor" : [
+                        1.0,
+                        0.003877632785588503,
+                        0.0,
+                        1.0
+                    ]
+                }
+            },
+            "name" : "Material.001"
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Suzanne",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2,
+                        "POSITION" : 1
+                    },
+                    "indices" : 0,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Suzanne"
+        }
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}

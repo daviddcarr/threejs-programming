@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Three.js Crash Course - Project 7</title>
+    
+    <style>
+      body {
+        margin: 0px;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    
+    
+    
+    <script src="js/three.min.js"></script>  
+    <script src="js/OrbitControls.js"></script>  
+    <!-- <script src="js/ObjectLoader.js"></script>   -->
+    <!-- <script src="js/JSONLoader.js"></script>   -->
+    <script src="js/GLTFLoader.js"></script>  
+    
+    <script>
+      
+      var scene = new THREE.Scene(),
+      // var scene = new THREE.Scene() - Object for setting up the scene. 
+          camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.001, 10000 ),
+          // camera = new THREE.PerspectiveCamera( [Field of View], [Aspect Ratio: Width / Height], [Clipping Plane: Near, Far] );
+          renderer =  new THREE.WebGLRenderer();
+      
+      // Set the intial size of the viewport  
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      
+      // Ad the renderer / canvas element to the body
+      document.body.appendChild( renderer.domElement );
+      
+      // Update the Canvas size when the browser is resized. Responsive yo.
+      window.addEventListener( 'resize', function() {
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+      });
+      
+      //ADDED: Holy shit that's easy, SO I imported OrbitControls from examples/js/controls/OrbitControls.js and implement it below. Just gotta give it the camera and the renderer element and it works.
+      controls = new THREE.OrbitControls( camera, renderer.domElement );
+      
+      var loader = new THREE.GLTFLoader();
+            
+      loader.load(
+        'models/Chair.gltf',
+        function ( gltf ) {
+      
+      		scene.add( gltf.scene );
+      
+      	},
+      	// called while loading is progressing
+      	function ( xhr ) {
+      
+      		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+      
+      	},
+      	// called when loading has errors
+      	function ( error ) {
+      
+      		console.log( 'An error happened' );
+      
+      	}
+      );
+      
+      // At this point the cube is there, but both the cube and the camera are at the origin point (0, 0, 0) so we just need to move either the cube or the camera.      
+      camera.position.z = 5;
+      
+      //Adding some lighting in this section, Lambert and Phong materials need light to be visible.
+      var sphereGeometry = new THREE.SphereGeometry( 0.3, 12, 12);
+      var sphereMaterialRed = new THREE.MeshBasicMaterial( { color: 0xFF0000 });
+      var sphereMaterialGreen = new THREE.MeshBasicMaterial( { color: 0x00FF00 });
+      var sphereMaterialBlue = new THREE.MeshBasicMaterial( { color: 0x0000FF });
+      var sphereRed = new THREE.Mesh( sphereGeometry, sphereMaterialRed),
+          sphereGreen = new THREE.Mesh( sphereGeometry, sphereMaterialGreen ),
+          sphereBlue = new THREE.Mesh( sphereGeometry, sphereMaterialBlue );
+      scene.add( sphereRed );
+      scene.add( sphereGreen );
+      scene.add( sphereBlue );
+      
+      // Point light
+      var pointLight1 = new THREE.PointLight( 0xFF0000, 15.0, 50);
+      scene.add( pointLight1 );
+      var pointLight2 = new THREE.PointLight( 0x00FF00, 15.0, 50);
+      scene.add( pointLight2 );
+      var pointLight3 = new THREE.PointLight( 0x0000FF, 15.0, 50);
+      scene.add( pointLight3 );
+           
+          
+      var update = function() {
+        // Game logic goes here, basically tells the browser how things should change every frame.
+        
+        // Rotate the cube these amounts on these axis every frame.
+        // cube.rotation.x += 0.01;
+        // cube.rotation.y += 0.005;
+                
+        var time = Date.now() * 0.0005;
+        
+        pointLight1.position.x = Math.sin( time * 0.7 ) * 2;
+        pointLight1.position.y = Math.cos( time * 0.5 ) * 3;
+        pointLight1.position.z = Math.cos( time * 0.3 ) * 4;
+        
+        pointLight2.position.x = Math.sin( time * 0.3 ) * 2;
+        pointLight2.position.y = Math.cos( time * 0.5 ) * 4;
+        pointLight2.position.z = Math.cos( time * 0.7 ) * 2;
+        
+        pointLight3.position.x = Math.sin( time * 0.5 ) * 3;
+        pointLight3.position.y = Math.cos( time * 0.3 ) * 4;
+        pointLight3.position.z = Math.cos( time * 0.7 ) * 2;
+        
+        sphereRed.position.x = Math.sin( time * 0.7 ) * 2;
+        sphereRed.position.y = Math.cos( time * 0.5 ) * 3;
+        sphereRed.position.z = Math.cos( time * 0.3 ) * 4;
+        
+        sphereGreen.position.x = Math.sin( time * 0.3 ) * 2;
+        sphereGreen.position.y = Math.cos( time * 0.5 ) * 4;
+        sphereGreen.position.z = Math.cos( time * 0.7 ) * 2;
+        
+        sphereBlue.position.x = Math.sin( time * 0.5 ) * 3;
+        sphereBlue.position.y = Math.cos( time * 0.3 ) * 4;
+        sphereBlue.position.z = Math.cos( time * 0.7 ) * 2;
+        
+      };
+      
+      var render = function() {
+        // Draw Scene
+        renderer.render( scene, camera );    
+        
+      };
+      
+      var GameLoop = function() {
+        // Run Game Loop (update, render, repeat)
+        
+        requestAnimationFrame( GameLoop );
+        
+        update();
+        render();
+        
+      };
+      
+      GameLoop();
+      
+    </script>
+  </body>
+  
+</html>
